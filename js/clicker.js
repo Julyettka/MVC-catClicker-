@@ -68,6 +68,7 @@ const octopus = {
 
     renderCat: function(liId){
         let currentCat = model.cats.find(cat => cat.id === liId);
+        console.log(currentCat);
         let mainCont = document.querySelector('.generalContent');
         let captionDiv = document.createElement('div');
         captionDiv.className = "col-md-10 text-center";
@@ -78,7 +79,7 @@ const octopus = {
         let image = document.createElement('img');
         image.className = "photo-pic img-rounded";
         image.src = currentCat.src;
-        image.id = currentCat.id;
+        image.id = currentCat.name;
         let att = document.createAttribute("onClick");
         att.value = "view.likeCurrent(this.id)";
         image.setAttributeNode(att);
@@ -93,14 +94,13 @@ const octopus = {
         captionDiv.append(captionHeader, image, caption, clickField); //hooray! append work fine
         mainCont.innerHTML = "";
         mainCont.append(captionDiv);
-        image.addEventListener("click", octopus.likes);
-        
+        image.addEventListener("click", octopus.likes);   
     },
 
     likes: function makeCounter(imgId){
-        let currentCat = model.cats.find(cat => cat.id === imgId);
-        console.log(currentCat);
-        let click = currentCat.clickCount++;
+        let currentCat = model.cats.find(cat => cat.name === imgId);
+        let click = ++currentCat.clickCount;
+        // console.log(click); bug here, currentCat is undefined
         let likesField = document.querySelector(".clicked");
         likesField.innerHTML = click;
     },
@@ -112,7 +112,7 @@ const octopus = {
         let catsId = model.cats.length + 1;
         console.log(catsId);
         let newCatObj = {name: inputName,
-                        id : 'cat' + catsId,
+                        id : `cat${catsId}`,
                         src: inputSrc,
                         clickCount: 0 };
         model.cats.push(newCatObj);
