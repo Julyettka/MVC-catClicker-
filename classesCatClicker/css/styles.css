@@ -1,0 +1,60 @@
+#navigation{
+    position: fixed;
+    
+}
+
+img{
+    width: 100%;
+    height: auto;
+    max-height: 480px;
+}
+
+.generalContent{
+    margin-left: 25%;
+}
+
+ul{
+    font-size: 18px;
+}
+li{
+    padding: 5px 0;
+}
+
+li:hover{
+    color: orange;
+}
+
+
+.clicked {
+  background-color: red;
+  display: inline-block;
+  height: 30px;
+  margin: 0 10px;
+  position: absolute;
+  top: 0;
+  right: 180px;
+  width: 30px;
+  color: white;
+}
+
+.clicked:before,
+.clicked:after{
+    content: "";
+      transform: rotate(-75deg);
+    background-color: red;
+  border-radius: 50%;
+  height: 30px;
+  position: absolute;
+  width: 30px;
+    z-index: -1;
+}
+
+.clicked:before {
+  top: -15px;
+  left: 0;
+}
+
+.clicked:after {
+  left: 15px;
+  top: 0;
+}
